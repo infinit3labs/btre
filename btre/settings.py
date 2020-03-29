@@ -14,6 +14,8 @@ import os
 
 from django.contrib.messages import constants as messages
 
+import secrets
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$zo$m93j=hgww(e$=lan7pd11s!*_ionx-#9kv0rq05igy#jfv'
+SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -34,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'debug_toolbar',
+    'contacts.apps.ContactsConfig',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
     'listings.apps.ListingsConfig',
@@ -85,15 +88,7 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'btredb',
-        'USER': 'mungbean',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-    }
-}
+DATABASES = secrets.DATABASES
 
 
 # Password validation
@@ -149,3 +144,10 @@ INTERNAL_IPS = ['127.0.0.1', ]
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+# Email Configuration
+EMAIL_HOST = secrets.EMAIL_HOST
+EMAIL_PORT = secrets.EMAIL_PORT
+EMAIL_HOST_USER = secrets.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = secrets.EMAIL_USE_TLS
