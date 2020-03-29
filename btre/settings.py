@@ -151,3 +151,8 @@ EMAIL_PORT = secrets.EMAIL_PORT
 EMAIL_HOST_USER = secrets.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
 EMAIL_USE_TLS = secrets.EMAIL_USE_TLS
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
